@@ -31,7 +31,7 @@
     <script>
         // 获取版本信息并填充下拉菜单
         function fetchVersions() {
-            fetch('https://api.papermc.io/v2/projects/paper')
+            fetch('https://api.papermc.io/v3/projects/paper')
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(`HTTP error! status: ${response.status}`);
@@ -59,7 +59,7 @@
 
         // 根据版本号获取构建号并填充下拉菜单
         function fetchBuilds(version) {
-            fetch(`https://api.papermc.io/v2/projects/paper/versions/${version}`)
+            fetch(`https://api.papermc.io/v3/projects/paper/versions/${version}`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(`HTTP error! status: ${response.status}`);
@@ -113,7 +113,7 @@
             progressText.textContent = '正在获取构建详情...';
 
             // 获取构建详情
-            fetch(`https://api.papermc.io/v2/projects/paper/versions/${version}/builds/${build}`)
+            fetch(`https://api.papermc.io/v3/projects/paper/versions/${version}/builds/${build}`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(`HTTP error! status: ${response.status}`);
@@ -122,7 +122,7 @@
                 })
                 .then(buildData => {
                     const jarName = buildData.downloads.application.name;
-                    const jarUrl = `https://api.papermc.io/v2/projects/paper/versions/${version}/builds/${build}/downloads/${jarName}`;
+                    const jarUrl = `https://api.papermc.io/v3/projects/paper/versions/${version}/builds/${build}/downloads/${jarName}`;
 
                     // 更新进度条
                     progressBar.value = 20;
